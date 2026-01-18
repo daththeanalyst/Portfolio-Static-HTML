@@ -561,47 +561,42 @@
         }
 
 /* =========================================
-           TABLET / IPAD VIEW (768px - 1024px)
-           Result: Uniform 2-Column Grid (Same Size Boxes)
+           TABLET / IPAD VIEW (Landscape & Portrait)
+           Range: 768px to 1400px
+           Result: Uniform 2-Column Grid
            ========================================= */
-        @media (max-width: 1024px) {
+        @media screen and (min-width: 768px) and (max-width: 1400px) {
             .skills-container {
-                overflow-x: visible; /* No scroll on iPad */
+                overflow-x: visible;
                 padding: 20px;
             }
 
             .skills-pipeline {
                 display: grid;
-                /* Creates 2 equal columns */
-                grid-template-columns: 1fr 1fr; 
+                grid-template-columns: 1fr 1fr; /* Two equal columns */
                 gap: 20px;
                 padding: 0;
             }
 
-            /* Remove the timeline connecting line on iPad for a cleaner grid look */
-            .skills-pipeline::before {
-                display: none;
-            }
+            /* Remove desktop connecting lines */
+            .skills-pipeline::before { display: none; }
 
             .pipeline-stage, 
             .pipeline-stage:nth-child(even) {
                 flex-direction: column;
-                align-items: stretch; /* Stretches box to fill grid cell */
+                align-items: stretch;
                 padding: 0;
                 min-width: auto;
             }
 
-            /* Hide the small dot connectors */
-            .stage-connector {
-                display: none;
-            }
+            /* Remove dots */
+            .stage-connector { display: none; }
 
             .stage-content {
                 width: 100%;
-                height: 100%; /* Forces equal height */
+                height: 100%;
                 text-align: center;
                 padding: 20px;
-                /* Flex ensures content distributes evenly inside the equal boxes */
                 display: flex;
                 flex-direction: column;
                 justify-content: flex-start;
@@ -613,38 +608,31 @@
         }
 
         /* =========================================
-           PHONE VIEW (Max 767px)
-           Result: Tiny, Compact Horizontal Scroll
+           PHONE VIEW
+           Range: 0px to 767px
+           Result: Tiny Horizontal Scroll
            ========================================= */
-        @media (max-width: 767px) {
+        @media screen and (max-width: 767px) {
             .skills-container {
-                /* Enable horizontal scrolling */
                 overflow-x: auto;
                 overflow-y: hidden;
                 padding: 10px 20px 30px 20px;
-                margin: 0 -20px; /* Pull to screen edges */
-                
-                /* Smooth scroll behavior */
+                margin: 0 -20px;
                 -webkit-overflow-scrolling: touch;
-                scrollbar-width: none; /* Hide scrollbar Firefox */
+                scrollbar-width: none;
             }
             
-            .skills-container::-webkit-scrollbar { 
-                display: none; /* Hide scrollbar Chrome/Safari */
-            }
+            .skills-container::-webkit-scrollbar { display: none; }
 
             .skills-pipeline {
                 display: flex;
-                flex-direction: row; /* Horizontal row */
+                flex-direction: row;
                 width: max-content;
                 gap: 12px;
                 padding: 0;
             }
 
-            /* Hide the timeline line on mobile to keep it clean */
-            .skills-pipeline::before {
-                display: none;
-            }
+            .skills-pipeline::before { display: none; }
 
             .pipeline-stage, 
             .pipeline-stage:nth-child(even) {
@@ -654,17 +642,13 @@
                 margin: 0;
             }
 
-            .stage-connector {
-                display: none; /* No dots on mobile */
-            }
+            .stage-connector { display: none; }
 
+            /* TINY PHONE CARD STYLING */
             .stage-content {
-                /* TINY BOX DIMENSIONS */
-                width: 150px;       /* Fixed small width */
-                min-height: 140px;  /* Fixed small height */
-                padding: 10px;      /* Reduced padding */
-                
-                /* Center content */
+                width: 150px;       
+                min-height: 140px; 
+                padding: 10px;      
                 display: flex;
                 flex-direction: column;
                 align-items: center;
@@ -672,11 +656,10 @@
                 border-radius: 8px;
             }
 
-            /* Make text smaller for "Tiny" feel */
             .stage-content h3 {
                 font-size: 0.85em;
                 margin-bottom: 8px;
-                height: 35px; /* Fixed height for headers to align tags */
+                height: 35px;
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -687,31 +670,10 @@
                 justify-content: center;
             }
 
-            /* Tiny tags */
             .skill-tag-pipeline {
                 font-size: 0.65em;
                 padding: 3px 6px;
                 border-radius: 2px;
-            }
-            
-            /* Add visual cue for scrolling */
-            .skills-container::after {
-                content: '→';
-                position: sticky;
-                right: 10px;
-                bottom: 50%;
-                font-size: 1.2em;
-                color: var(--accent-green);
-                animation: floatRight 1s infinite;
-                opacity: 0.8;
-                pointer-events: none;
-                display: block;
-                margin-top: -30px; /* Adjust vertical position */
-                float: right;
-            }
-             @keyframes floatRight {
-                0%, 100% { transform: translateX(0); }
-                50% { transform: translateX(5px); }
             }
         }
 
@@ -1370,6 +1332,7 @@
     </script>
 </body>
 </html>
+
 
 
 
