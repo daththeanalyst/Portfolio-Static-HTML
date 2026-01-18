@@ -560,83 +560,158 @@
             transform: translateY(-2px);
         }
 
+/* =========================================
+           TABLET / IPAD VIEW (768px - 1024px)
+           Result: Uniform 2-Column Grid (Same Size Boxes)
+           ========================================= */
         @media (max-width: 1024px) {
-            .skills-pipeline {
-                flex-direction: column;
-                gap: 25px;
-                padding: 20px 0;
-            }
-
-            .skills-pipeline::before {
-                left: 50%;
-                right: auto;
-                top: 0;
-                bottom: 0;
-                width: 2px;
-                height: auto;
-                background: linear-gradient(180deg, 
-                    transparent 0%, 
-                    var(--accent-green) 10%, 
-                    var(--accent-green) 90%, 
-                    transparent 100%);
-                transform: translateX(-50%);
-            }
-
-            .pipeline-stage {
-                flex-direction: row;
-                min-width: auto;
-                gap: 20px;
-            }
-
-            .pipeline-stage:nth-child(even) {
-                flex-direction: row-reverse;
-            }
-
-            .stage-connector {
-                position: absolute;
-                left: 50%;
-                top: 50%;
-                transform: translate(-50%, -50%);
-                margin-bottom: 0;
-            }
-
-            .stage-content {
-                text-align: left;
-                flex: 1;
-            }
-
-            .stage-content h3 {
-                justify-content: flex-start;
-            }
-
-            .stage-skills {
-                justify-content: flex-start;
-            }
-        }
-
-        @media (max-width: 768px) {
             .skills-container {
-                overflow-x: visible;
+                overflow-x: visible; /* No scroll on iPad */
+                padding: 20px;
             }
 
+            .skills-pipeline {
+                display: grid;
+                /* Creates 2 equal columns */
+                grid-template-columns: 1fr 1fr; 
+                gap: 20px;
+                padding: 0;
+            }
+
+            /* Remove the timeline connecting line on iPad for a cleaner grid look */
             .skills-pipeline::before {
-                left: 20px;
+                display: none;
             }
 
-            .pipeline-stage,
+            .pipeline-stage, 
             .pipeline-stage:nth-child(even) {
                 flex-direction: column;
-                align-items: flex-start;
-                padding-left: 50px;
+                align-items: stretch; /* Stretches box to fill grid cell */
+                padding: 0;
+                min-width: auto;
             }
 
+            /* Hide the small dot connectors */
             .stage-connector {
-                left: 20px;
+                display: none;
             }
 
             .stage-content {
                 width: 100%;
-                padding: 15px;
+                height: 100%; /* Forces equal height */
+                text-align: center;
+                padding: 20px;
+                /* Flex ensures content distributes evenly inside the equal boxes */
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+            }
+            
+            .stage-skills {
+                justify-content: center;
+            }
+        }
+
+        /* =========================================
+           PHONE VIEW (Max 767px)
+           Result: Tiny, Compact Horizontal Scroll
+           ========================================= */
+        @media (max-width: 767px) {
+            .skills-container {
+                /* Enable horizontal scrolling */
+                overflow-x: auto;
+                overflow-y: hidden;
+                padding: 10px 20px 30px 20px;
+                margin: 0 -20px; /* Pull to screen edges */
+                
+                /* Smooth scroll behavior */
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none; /* Hide scrollbar Firefox */
+            }
+            
+            .skills-container::-webkit-scrollbar { 
+                display: none; /* Hide scrollbar Chrome/Safari */
+            }
+
+            .skills-pipeline {
+                display: flex;
+                flex-direction: row; /* Horizontal row */
+                width: max-content;
+                gap: 12px;
+                padding: 0;
+            }
+
+            /* Hide the timeline line on mobile to keep it clean */
+            .skills-pipeline::before {
+                display: none;
+            }
+
+            .pipeline-stage, 
+            .pipeline-stage:nth-child(even) {
+                flex-direction: column;
+                min-width: auto;
+                padding: 0;
+                margin: 0;
+            }
+
+            .stage-connector {
+                display: none; /* No dots on mobile */
+            }
+
+            .stage-content {
+                /* TINY BOX DIMENSIONS */
+                width: 150px;       /* Fixed small width */
+                min-height: 140px;  /* Fixed small height */
+                padding: 10px;      /* Reduced padding */
+                
+                /* Center content */
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                border-radius: 8px;
+            }
+
+            /* Make text smaller for "Tiny" feel */
+            .stage-content h3 {
+                font-size: 0.85em;
+                margin-bottom: 8px;
+                height: 35px; /* Fixed height for headers to align tags */
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .stage-skills {
+                gap: 4px;
+                justify-content: center;
+            }
+
+            /* Tiny tags */
+            .skill-tag-pipeline {
+                font-size: 0.65em;
+                padding: 3px 6px;
+                border-radius: 2px;
+            }
+            
+            /* Add visual cue for scrolling */
+            .skills-container::after {
+                content: '→';
+                position: sticky;
+                right: 10px;
+                bottom: 50%;
+                font-size: 1.2em;
+                color: var(--accent-green);
+                animation: floatRight 1s infinite;
+                opacity: 0.8;
+                pointer-events: none;
+                display: block;
+                margin-top: -30px; /* Adjust vertical position */
+                float: right;
+            }
+             @keyframes floatRight {
+                0%, 100% { transform: translateX(0); }
+                50% { transform: translateX(5px); }
             }
         }
 
@@ -1295,6 +1370,7 @@
     </script>
 </body>
 </html>
+
 
 
 
