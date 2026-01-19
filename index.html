@@ -4,18 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dimitrios Athinaios - Data Science Portfolio</title>
-    <link rel="icon" type="image/svg+xml" href="DA.svg">
-    
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Dimitris Athinaios - Data Scientist">
-    <meta property="og:description" content="Portfolio of a Data Scientist & Aspiring ML Engineer specializing in Analytics, Python, and Cloud Computing.">
-    <meta property="og:image" content="https://daththeanalyst.github.io/Portfolio/D-(14).png">
-    <meta property="og:url" content="https://daththeanalyst.github.io/Portfolio/">
-
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Dimitris Athinaios - Data Scientist">
-    <meta name="twitter:description" content="Portfolio of a Data Scientist & Aspiring ML Engineer specializing in Analytics.">
-    <meta name="twitter:image" content="https://daththeanalyst.github.io/Portfolio/D-(14).png">
     <style>
         * {
             margin: 0;
@@ -77,53 +65,37 @@
         .logo-svg {
             width: clamp(120px, 25vw, 200px);
             height: auto;
-            /* Base steady glow */
-            filter: drop-shadow(0 0 8px #00ff41);
-            animation: logoSteadyGlow 4s ease-in-out infinite;
+            filter: drop-shadow(0 0 10px #00ff41);
+            animation: logoGlow 3s ease-in-out infinite;
         }
 
-        /* NEW: Soft, steady breathing effect. No strobing. */
-        @keyframes logoSteadyGlow {
+        @keyframes logoGlow {
             0%, 100% { 
-                filter: drop-shadow(0 0 8px #00ff41) drop-shadow(0 0 15px #00ff4180);
+                filter: drop-shadow(0 0 10px #00ff41) drop-shadow(0 0 20px #00ff4180);
             }
             50% { 
-                /* Only slightly larger to prevent flickering */
-                filter: drop-shadow(0 0 12px #00ff41) drop-shadow(0 0 25px #00ff4180);
+                filter: drop-shadow(0 0 30px #00ff41) drop-shadow(0 0 50px #00ff4180);
             }
         }
 
-        .logo-svg path, .logo-svg rect {
-            fill: #00ff41;
-        }
-
-        /* UPDATED: Static Name (No Glitch Animation) */
         .glitch {
             font-size: clamp(2em, 8vw, 4em);
             font-weight: bold;
-            color: #e0e0e0;
+            color: #00cc33;
             text-transform: uppercase;
+            position: relative;
             letter-spacing: 3px;
-            /* Constant high-quality glow */
-            text-shadow: 
-                0 0 10px #00cc33, 
-                0 0 20px #00cc3340;
         }
 
         .typewriter {
             font-size: clamp(1.2em, 4vw, 1.8em);
             color: var(--text-secondary);
             margin: 0;
-            border-right: 2px solid var(--accent-green);
-            white-space: nowrap;
-            overflow: hidden;
+            border-right: 2px solid #00ff41;
+            white-space: normal;
+            overflow: visible;
             display: inline-block;
-            animation: typing 3s steps(40), blink 0.75s step-end infinite;
-        }
-
-        @keyframes typing {
-            from { width: 0; }
-            to { width: 100%; }
+            animation: blink 0.75s step-end infinite;
         }
 
         @keyframes blink {
@@ -135,53 +107,44 @@
             gap: 15px;
             flex-wrap: wrap;
             justify-content: center;
+            align-items: center;
             margin-top: 30px;
+            width: 100%;
         }
 
         .terminal-links a {
             color: var(--accent-green);
             text-decoration: none;
-            padding: 12px 24px;
-            border: 1px solid var(--accent-green);
+            padding: 12px 20px;
+            border: 2px solid var(--accent-green);
             position: relative;
             overflow: hidden;
             transition: all 0.3s;
             font-family: 'Courier New', monospace;
-            font-size: clamp(0.8em, 2vw, 1em);
-            display: flex;
+            font-size: clamp(0.8em, 2vw, 0.95em);
+            display: inline-flex;
             align-items: center;
             justify-content: center;
+            gap: 8px;
+            min-width: 120px;
         }
 
-        .terminal-links a::before {
-            content: '> ';
-            opacity: 0;
-            transition: opacity 0.3s;
+        .terminal-links svg {
+            width: 18px;
+            height: 18px;
+            fill: var(--accent-green);
+            transition: fill 0.3s;
         }
 
-        .terminal-links a:hover::before {
-            opacity: 1;
-        }
-
-        .terminal-links a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--accent-green);
-            transition: width 0.3s;
-        }
-
-        .terminal-links a:hover::after {
-            width: 100%;
+        .terminal-links a:hover svg {
+            fill: var(--bg-primary);
         }
 
         .terminal-links a:hover {
             background: var(--accent-green);
             color: var(--bg-primary);
             box-shadow: 0 0 20px var(--accent-green);
+            transform: translateY(-2px);
         }
 
         .scroll-indicator {
@@ -222,8 +185,8 @@
 
         .section {
             margin: 100px 0;
-            opacity: 0;
-            transform: translateY(30px);
+            opacity: 1;
+            transform: translateY(0);
             transition: all 0.6s;
         }
 
@@ -267,6 +230,9 @@
             border-left: 4px solid var(--accent-green);
             position: relative;
             overflow: hidden;
+            display: flex;
+            gap: 30px;
+            align-items: flex-start;
         }
 
         .about-container::before {
@@ -282,6 +248,53 @@
 
         .about-container:hover::before {
             left: 100%;
+        }
+
+        .about-image {
+            width: 200px;
+            height: 200px;
+            min-width: 200px;
+            border-radius: 10px;
+            border: 3px solid var(--accent-green);
+            object-fit: cover;
+            box-shadow: 0 0 20px var(--accent-green)30;
+            background: var(--bg-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-green);
+            font-size: 0.9em;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-text p {
+            margin-bottom: 15px;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .about-text p::before {
+            content: '>';
+            position: absolute;
+            left: 0;
+            color: var(--accent-green);
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .about-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .about-image {
+                width: 150px;
+                height: 150px;
+                min-width: 150px;
+            }
         }
 
         .projects-grid {
@@ -442,105 +455,6 @@
             color: var(--accent-green);
         }
 
-        .skills-container {
-            position: relative;
-            padding: 20px 0;
-            overflow-x: auto;
-        }
-
-        .skills-pipeline {
-            display: flex;
-            flex-direction: row;
-            gap: 0;
-            position: relative;
-            min-width: min-content;
-            padding: 40px 0;
-        }
-
-        .skills-pipeline::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            right: 0;
-            top: 50%;
-            height: 2px;
-            background: linear-gradient(90deg, 
-                transparent 0%, 
-                var(--accent-green) 5%, 
-                var(--accent-green) 95%, 
-                transparent 100%);
-            transform: translateY(-50%);
-            z-index: 0;
-        }
-
-        .pipeline-stage {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            position: relative;
-            flex: 1;
-            min-width: 180px;
-        }
-
-        .pipeline-stage:nth-child(even) {
-            flex-direction: column;
-        }
-
-        .stage-connector {
-            position: relative;
-            width: 16px;
-            height: 16px;
-            background: var(--bg-primary);
-            border: 3px solid var(--accent-green);
-            border-radius: 50%;
-            z-index: 2;
-            box-shadow: 0 0 12px var(--accent-green);
-            animation: pulse 4s ease-in-out infinite;
-            margin-bottom: 20px;
-        }
-
-        @keyframes pulse {
-            0%, 100% { box-shadow: 0 0 12px var(--accent-green); }
-            50% { box-shadow: 0 0 18px var(--accent-green); }
-        }
-
-        .stage-content {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            padding: 18px;
-            transition: all 0.3s;
-            width: 100%;
-            text-align: center;
-            aspect-ratio: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .stage-content:hover {
-            border-color: var(--accent-green);
-            box-shadow: 0 0 20px var(--accent-green)30;
-            transform: translateY(-5px);
-        }
-
-        .stage-content h3 {
-            color: var(--accent-green);
-            font-size: clamp(0.9em, 2.5vw, 1em);
-            margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
-
-        .stage-skills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
-            justify-content: center;
-        }
-
         .skill-tag-pipeline {
             background: var(--bg-secondary);
             color: var(--text-secondary);
@@ -557,112 +471,6 @@
             color: var(--bg-primary);
             border-color: var(--accent-green);
             transform: translateY(-2px);
-        }
-
-        /* TABLET / IPAD VIEW */
-        @media screen and (min-width: 768px) and (max-width: 1400px) {
-            .skills-container {
-                overflow-x: visible;
-                padding: 20px;
-            }
-
-            .skills-pipeline {
-                display: grid;
-                grid-template-columns: 1fr 1fr;
-                gap: 20px;
-                padding: 0;
-            }
-
-            .skills-pipeline::before { display: none; }
-
-            .pipeline-stage, 
-            .pipeline-stage:nth-child(even) {
-                flex-direction: column;
-                align-items: stretch;
-                padding: 0;
-                min-width: auto;
-            }
-
-            .stage-connector { display: none; }
-
-            .stage-content {
-                width: 100%;
-                height: 100%;
-                text-align: center;
-                padding: 20px;
-                display: flex;
-                flex-direction: column;
-                justify-content: flex-start;
-            }
-            
-            .stage-skills {
-                justify-content: center;
-            }
-        }
-
-        /* PHONE VIEW */
-        @media screen and (max-width: 767px) {
-            .skills-container {
-                overflow-x: auto;
-                overflow-y: hidden;
-                padding: 10px 20px 30px 20px;
-                margin: 0 -20px;
-                -webkit-overflow-scrolling: touch;
-                scrollbar-width: none;
-            }
-            
-            .skills-container::-webkit-scrollbar { display: none; }
-
-            .skills-pipeline {
-                display: flex;
-                flex-direction: row;
-                width: max-content;
-                gap: 12px;
-                padding: 0;
-            }
-
-            .skills-pipeline::before { display: none; }
-
-            .pipeline-stage, 
-            .pipeline-stage:nth-child(even) {
-                flex-direction: column;
-                min-width: auto;
-                padding: 0;
-                margin: 0;
-            }
-
-            .stage-connector { display: none; }
-
-            .stage-content {
-                width: 150px;       
-                min-height: 140px; 
-                padding: 10px;      
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: flex-start;
-                border-radius: 8px;
-            }
-
-            .stage-content h3 {
-                font-size: 0.85em;
-                margin-bottom: 8px;
-                height: 35px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
-
-            .stage-skills {
-                gap: 4px;
-                justify-content: center;
-            }
-
-            .skill-tag-pipeline {
-                font-size: 0.65em;
-                padding: 3px 6px;
-                border-radius: 2px;
-            }
         }
 
         .timeline-item {
@@ -720,7 +528,6 @@
             font-size: clamp(0.85em, 2vw, 0.95em);
         }
 
-        /* UPDATED CERT BADGES AS LINKS */
         .cert-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
@@ -739,17 +546,30 @@
             overflow: hidden;
             font-size: clamp(0.8em, 2vw, 0.9em);
             text-decoration: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
+            display: block;
+        }
+
+        .cert-badge::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: var(--accent-green);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.5s;
+        }
+
+        .cert-badge:hover::before {
+            width: 300%;
+            height: 300%;
         }
 
         .cert-badge:hover {
             color: var(--bg-primary);
-            background: var(--accent-green);
-            box-shadow: 0 0 15px var(--accent-green);
-            transform: translateY(-3px);
+            box-shadow: 0 0 20px var(--accent-green);
         }
 
         .cert-badge span {
@@ -808,7 +628,20 @@
             overflow: hidden;
             transition: all 0.3s;
             text-decoration: none;
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .contact-btn svg, .social-link svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--accent-green);
+            transition: fill 0.3s;
+        }
+
+        .contact-btn:hover svg, .social-link:hover svg {
+            fill: var(--bg-primary);
         }
 
         .contact-btn::before, .social-link::before {
@@ -831,10 +664,8 @@
         }
 
         .contact-btn:hover, .social-link:hover {
-            color: #00ff41;
-            background: transparent;
+            color: var(--bg-primary);
             box-shadow: 0 0 30px var(--accent-green);
-            font-weight: bold;
         }
 
         @media (max-width: 768px) {
@@ -881,7 +712,6 @@
             }
 
             .projects-grid,
-            .skills-container,
             .cert-grid {
                 gap: 20px;
             }
@@ -894,33 +724,115 @@
     <div class="container">
         <header>
             <div class="logo-container">
-                <svg class="logo-svg" viewBox="0 0 220 120" xmlns="http://www.w3.org/2000/svg">
-                    <rect x="20" y="20" width="28" height="80" fill="#00ff41"/>
-                    <path d="M 48 20 Q 110 20 110 60 Q 110 100 48 100 Z" fill="#00ff41"/>
-                    
-                    <path d="M 120 100 L 165 15 L 210 100 Z" fill="#00ff41"/>
-                    <path d="M 142 70 L 165 35 L 188 70 Z" fill="#0a0a0a"/>
-                </svg>
+                <img src="DA.png" alt="DA Logo" class="logo-svg">
             </div>
             <h1 class="glitch">DIMITRIOS ATHINAIOS</h1>
             <p class="typewriter">Data Scientist • Aspiring ML/AI Engineer</p>
             <p style="font-size: 1.2em; color: var(--text-secondary); margin-top: 15px;">MSc Business Analytics @ UCL • London</p>
             <div class="terminal-links">
-                <a href="mailto:dimo.atheneos@gmail.com">EMAIL</a>
-                <a href="tel:+306940934595">PHONE</a>
-                <a href="https://www.linkedin.com/in/dimitriosath/" target="_blank">LINKEDIN</a>
-                <a href="https://github.com/daththeanalyst" target="_blank">GITHUB</a>
-                <a href="https://daththeanalyst.github.io/Portfolio/" target="_blank">PORTFOLIO</a>
+                <a href="/cdn-cgi/l/email-protection#e084898d8fce819488858e858f93a0878d81898cce838f8d">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                    </svg>
+                    EMAIL
+                </a>
+                <a href="tel:+306940934595">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                    </svg>
+                    PHONE
+                </a>
+                <a href="https://www.linkedin.com/in/dimitriosath/" target="_blank">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+                    </svg>
+                    LINKEDIN
+                </a>
+                <a href="https://github.com/daththeanalyst" target="_blank">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                    </svg>
+                    GITHUB
+                </a>
+                <a href="https://daththeanalyst.github.io/Portfolio/" target="_blank">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+                    </svg>
+                    WEBSITE
+                </a>
             </div>
             <div class="scroll-indicator"></div>
         </header>
 
         <section class="section">
             <h2 class="section-title">About</h2>
-            <div class="about-container">
-                <p>I am a Data Scientist currently pursuing an MSc in Business Analytics at UCL School of Management, where I maintain a First-Class average of 81% (Distinction). Having graduated with First Class Honours from Henley Business School, I am now focused on bridging the gap between high-level business strategy and deep technical execution.</p>
-                <p style="margin-top: 15px;">My current work is centered on cultivating the rigorous mathematical foundations and advanced programming expertise required for AI/ML Engineering. I am passionate about deconstructing complex algorithms to their first principles—focusing on the core linear algebra, calculus, and scalable coding practices that power modern artificial intelligence.</p>
-                <p style="margin-top: 15px;">From engineering spatio-temporal ML pipelines to building scalable ETL infrastructure, my goal is to develop robust, data-driven solutions that solve real-world problems through technical excellence and continuous improvement (Kaizen).</p>
+            <div class="about-container" style="flex-direction: column;">
+                <div style="display: flex; gap: 30px; align-items: flex-start; width: 100%;">
+                    <svg class="about-image" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" style="background: var(--bg-secondary);">
+                        <circle cx="100" cy="50" r="20" fill="none" stroke="#00ff41" stroke-width="3"/>
+                        <line x1="100" y1="70" x2="100" y2="130" stroke="#00ff41" stroke-width="3"/>
+                        <line x1="100" y1="90" x2="70" y2="110" stroke="#00ff41" stroke-width="3"/>
+                        <line x1="100" y1="90" x2="130" y2="110" stroke="#00ff41" stroke-width="3"/>
+                        <line x1="100" y1="130" x2="75" y2="170" stroke="#00ff41" stroke-width="3"/>
+                        <line x1="100" y1="130" x2="125" y2="170" stroke="#00ff41" stroke-width="3"/>
+                    </svg>
+                    <div class="about-text">
+                        <p>Data Scientist and UCL MSc student (81% avg) bridging the gap between strategy and execution. I am currently mastering the end-to-end AI lifecycle—from the mathematical groundwork (Linear Algebra, Calculus, Stats) to advanced model development (PyTorch, TensorFlow) and cloud-native engineering (AWS, Databricks, SQL). My goal is to leverage this multidisciplinary expertise to build scalable, high-impact machine learning systems.</p>
+                        <p>Based in London and actively looking for opportunities in the Data Industry to apply my technical skills and business acumen to solve real-world challenges.</p>
+                    </div>
+                </div>
+                
+                <div style="width: 100%; padding-top: 30px; margin-top: 30px; border-top: 2px solid var(--border-color);">
+                    <h3 style="color: var(--accent-green); font-size: 1.5em; margin-bottom: 20px;">Technical Skills</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
+                        <div>
+                            <h4 style="color: var(--accent-green); font-size: 1.1em; margin-bottom: 10px;">Languages</h4>
+                            <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                                <span class="skill-tag-pipeline">Python</span>
+                                <span class="skill-tag-pipeline">R</span>
+                                <span class="skill-tag-pipeline">SQL</span>
+                                <span class="skill-tag-pipeline">HTML/CSS</span>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 style="color: var(--accent-green); font-size: 1.1em; margin-bottom: 10px;">ML & Data Science</h4>
+                            <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                                <span class="skill-tag-pipeline">Scikit-learn</span>
+                                <span class="skill-tag-pipeline">XGBoost</span>
+                                <span class="skill-tag-pipeline">TensorFlow</span>
+                                <span class="skill-tag-pipeline">PyTorch</span>
+                                <span class="skill-tag-pipeline">Keras</span>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 style="color: var(--accent-green); font-size: 1.1em; margin-bottom: 10px;">Tools & Platforms</h4>
+                            <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                                <span class="skill-tag-pipeline">Databricks</span>
+                                <span class="skill-tag-pipeline">AWS</span>
+                                <span class="skill-tag-pipeline">Docker</span>
+                                <span class="skill-tag-pipeline">Git</span>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 style="color: var(--accent-green); font-size: 1.1em; margin-bottom: 10px;">Visualization</h4>
+                            <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                                <span class="skill-tag-pipeline">Power BI</span>
+                                <span class="skill-tag-pipeline">Tableau</span>
+                                <span class="skill-tag-pipeline">Matplotlib</span>
+                                <span class="skill-tag-pipeline">Seaborn</span>
+                            </div>
+                        </div>
+                        <div>
+                            <h4 style="color: var(--accent-green); font-size: 1.1em; margin-bottom: 10px;">Development</h4>
+                            <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                                <span class="skill-tag-pipeline">Jupyter</span>
+                                <span class="skill-tag-pipeline">RStudio</span>
+                                <span class="skill-tag-pipeline">Excel</span>
+                                <span class="skill-tag-pipeline">VS Code</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -951,8 +863,8 @@
                         <p><strong>Technical Approach:</strong> Implemented advanced feature engineering including temporal patterns, spatial clustering, and crime-proximity calculations. Used Optuna for hyperparameter optimization of the XGBoost model, systematically testing 500+ configurations. Applied cross-validation with spatial awareness to prevent data leakage.</p>
                         <p><strong>Impact:</strong> The model achieved exceptional performance with an R² of 0.92 and Mean Absolute Error of £64k, significantly outperforming KNN and Polynomial Regression baselines by 15%+. The system successfully captures non-linear interactions between location and safety factors.</p>
                         <div class="project-links">
-                            <a href="https://github.com/daththeanalyst/London-SafeValue-Analytics" class="project-link" target="_blank">VIEW ON GITHUB →</a>
-                            <a href="https://github.com/daththeanalyst/London-SafeValue-Analytics/blob/main/Final_File_Code%20(2).ipynb" class="project-link" target="_blank">LIVE DEMO →</a>
+                            <a href="https://github.com/daththeanalyst/London-SafeValue-Analytics" class="project-link" target="_blank">VIEW ON GITHUB</a>
+                            <a href="https://github.com/daththeanalyst/London-SafeValue-Analytics/blob/main/Final_File_Code%20(2).ipynb" class="project-link" target="_blank">LIVE NOTEBOOK</a>
                         </div>
                     </div>
                 </div>
@@ -982,7 +894,7 @@
                         <p><strong>Causal Analysis:</strong> Conducted rigorous A/B testing and implemented Two-Stage Least Squares (2SLS) Instrumental Variable regression to address endogeneity in price-demand relationships. Estimated price elasticity coefficients and identified key sales drivers while controlling for confounding variables.</p>
                         <p><strong>Impact:</strong> Provided actionable recommendations that balance customer acquisition costs with lifetime value, optimize marketing spend allocation, and inform dynamic pricing strategies.</p>
                         <div class="project-links">
-                            <a href="https://github.com/daththeanalyst/CLV-CAC-Analysis-for-Case-Study-UCL" class="project-link" target="_blank">VIEW ON GITHUB →</a>
+                            <a href="https://github.com/daththeanalyst/CLV-CAC-Analysis-for-Case-Study-UCL" class="project-link" target="_blank">VIEW ON GITHUB</a>
                         </div>
                     </div>
                 </div>
@@ -1011,6 +923,9 @@
                         <p><strong>Data Engineering:</strong> Implemented robust data quality checks, handled missing values intelligently, and engineered meaningful customer segments ("Guest" vs "Registered") based on behavioral patterns. Used Delta Lake for ACID transactions and time-travel capabilities.</p>
                         <p><strong>Analytics & Visualization:</strong> Created interactive dashboards in Databricks tracking key business metrics including Monthly Revenue trends, Top Products by sales volume and margin, Customer Acquisition patterns, and Product Category performance. Enabled stakeholders to make data-driven inventory and marketing decisions.</p>
                         <p><strong>Impact:</strong> Reduced data processing time by 10x compared to traditional batch methods. Enabled real-time business intelligence for strategic decision-making.</p>
+                        <div class="project-links">
+                            <a href="https://github.com/daththeanalyst" class="project-link" target="_blank">VIEW ON GITHUB</a>
+                        </div>
                     </div>
                 </div>
 
@@ -1039,97 +954,8 @@
                         <p><strong>Development Practices:</strong> Utilized Git for version control, GitHub Pages for hosting, and followed web accessibility standards (semantic HTML, proper contrast ratios). Optimized for SEO with proper meta tags and structured data.</p>
                         <p><strong>Impact:</strong> Successfully deployed production websites serving real users. Demonstrated ability to translate design concepts into functional, performant web applications.</p>
                         <div class="project-links">
-                            <a href="https://daththeanalyst.github.io/Portfolio/" class="project-link" target="_blank">PORTFOLIO SITE →</a>
-                            <a href="globalteamplans.com" class="project-link" target="_blank">CORPORATE SITE →</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="section">
-            <h2 class="section-title">Skills Pipeline</h2>
-            <div class="skills-container">
-                <div class="skills-pipeline">
-                    <div class="pipeline-stage">
-                        <div class="stage-connector"></div>
-                        <div class="stage-content">
-                            <h3>Programming Languages</h3>
-                            <div class="stage-skills">
-                                <span class="skill-tag-pipeline">Python</span>
-                                <span class="skill-tag-pipeline">R</span>
-                                <span class="skill-tag-pipeline">SQL</span>
-                                <span class="skill-tag-pipeline">Java</span>
-                                <span class="skill-tag-pipeline">HTML/CSS</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="pipeline-stage">
-                        <div class="stage-connector"></div>
-                        <div class="stage-content">
-                            <h3>Data Collection & Storage</h3>
-                            <div class="stage-skills">
-                                <span class="skill-tag-pipeline">SQL</span>
-                                <span class="skill-tag-pipeline">Spark</span>
-                                <span class="skill-tag-pipeline">Hive</span>
-                                <span class="skill-tag-pipeline">AWS</span>
-                                <span class="skill-tag-pipeline">Databricks</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="pipeline-stage">
-                        <div class="stage-connector"></div>
-                        <div class="stage-content">
-                            <h3>Data Processing & Engineering</h3>
-                            <div class="stage-skills">
-                                <span class="skill-tag-pipeline">Docker</span>
-                                <span class="skill-tag-pipeline">Kubernetes</span>
-                                <span class="skill-tag-pipeline">Git</span>
-                                <span class="skill-tag-pipeline">Linux</span>
-                                <span class="skill-tag-pipeline">PySpark</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="pipeline-stage">
-                        <div class="stage-connector"></div>
-                        <div class="stage-content">
-                            <h3>Machine Learning & AI</h3>
-                            <div class="stage-skills">
-                                <span class="skill-tag-pipeline">Scikit-learn</span>
-                                <span class="skill-tag-pipeline">XGBoost</span>
-                                <span class="skill-tag-pipeline">TensorFlow</span>
-                                <span class="skill-tag-pipeline">PyTorch</span>
-                                <span class="skill-tag-pipeline">Keras</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="pipeline-stage">
-                        <div class="stage-connector"></div>
-                        <div class="stage-content">
-                            <h3>Visualization & Reporting</h3>
-                            <div class="stage-skills">
-                                <span class="skill-tag-pipeline">Power BI</span>
-                                <span class="skill-tag-pipeline">Tableau</span>
-                                <span class="skill-tag-pipeline">Matplotlib</span>
-                                <span class="skill-tag-pipeline">Seaborn</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="pipeline-stage">
-                        <div class="stage-connector"></div>
-                        <div class="stage-content">
-                            <h3>Development Tools</h3>
-                            <div class="stage-skills">
-                                <span class="skill-tag-pipeline">Jupyter</span>
-                                <span class="skill-tag-pipeline">RStudio</span>
-                                <span class="skill-tag-pipeline">Excel</span>
-                                <span class="skill-tag-pipeline">VS Code</span>
-                            </div>
+                            <a href="https://daththeanalyst.github.io/Portfolio/" class="project-link" target="_blank">PORTFOLIO SITE</a>
+                            <a href="https://globalteamplans.com" class="project-link" target="_blank">CORPORATE SITE</a>
                         </div>
                     </div>
                 </div>
@@ -1176,45 +1002,42 @@
         <section class="section">
             <h2 class="section-title">Certifications</h2>
             <div class="cert-grid">
-                <a href="https://www.credly.com/badges/7a1394e2-1698-4b9e-9d28-26b58d1e3c79/linked_in_profile" target="_blank" class="cert-badge">
-                    <span>Google Data Analytics</span>
-                </a>
-
-                <a href="https://www.coursera.org/account/accomplishments/professional-cert/H7Y9DHUXNFY5" target="_blank" class="cert-badge">
-                    <span>IBM Data Analyst</span>
-                </a>
-
-                <a href="https://www.coursera.org/account/accomplishments/professional-cert/4JMQXA2VUMEJ" target="_blank" class="cert-badge">
-                    <span>Google Advanced Analytics</span>
-                </a>
-
-                <a href="https://www.coursera.org/account/accomplishments/specialization/4W0TT9EK791M" target="_blank" class="cert-badge">
-                    <span>Mathematics for Machine Learning</span>
-                </a>
-
-                <a href="https://www.udemy.com/certificate/UC-6a440cdc-fae6-4148-87ca-d9da7671993c/" target="_blank" class="cert-badge">
-                    <span>Microsoft Power BI</span>
-                </a>
-                
-                <a href="https://credentials.databricks.com/979a777d-dbbf-44e1-8135-d6b1577eb238#acc.1k5awZ69" target="_blank" class="cert-badge">
-                    <span>Databricks Fundamentals</span>
-                </a>
+                <a href="https://www.coursera.org/account/accomplishments/specialization/4W0TT9EK791M" target="_blank" class="cert-badge"><span>Mathematics for ML</span></a>
+                <a href="https://www.coursera.org/account/accomplishments/professional-cert/4JMQXA2VUMEJ" target="_blank" class="cert-badge"><span>Google Advanced Analytics</span></a>
+                <a href="https://www.udemy.com/certificate/UC-6a440cdc-fae6-4148-87ca-d9da7671993c/" target="_blank" class="cert-badge"><span>Microsoft Power BI</span></a>
+                <a href="https://www.coursera.org/account/accomplishments/professional-cert/H7Y9DHUXNFY5" target="_blank" class="cert-badge"><span>IBM Data Analyst</span></a>
+                <a href="https://www.credly.com/badges/7a1394e2-1698-4b9e-9d28-26b58d1e3c79/linked_in_profile" target="_blank" class="cert-badge"><span>Google Data Analytics</span></a>
+                <a href="https://credentials.databricks.com/979a777d-dbbf-44e1-8135-d6b1577eb238#acc.1k5awZ69" target="_blank" class="cert-badge"><span>Databricks Fundamentals</span></a>
             </div>
 
             <div class="contact-section">
                 <h3>Let's Connect</h3>
                 <p>Interested in collaboration or have a project in mind? Feel free to reach out!</p>
                 <div class="contact-buttons">
-                    <a href="mailto:dimo.atheneos@gmail.com" class="contact-btn">EMAIL ME</a>
-                    <a href="https://www.linkedin.com/in/dimitriosath/" target="_blank" class="social-link">LINKEDIN</a>
-                    <a href="./Dimitrios_Athinaios_CV.pdf" download class="contact-btn">DOWNLOAD CV</a>
+                    <a href="/cdn-cgi/l/email-protection#dfbbb6b2b0f1beabb7bab1bab0ac9fb8b2beb6b3f1bcb0b2" class="contact-btn">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                        </svg>
+                        EMAIL ME
+                    </a>
+                    <a href="https://www.linkedin.com/in/dimitriosath/" target="_blank" class="social-link">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+                        </svg>
+                        LINKEDIN
+                    </a>
+                    <a href="Dimitrios_Athinaios_CV.pdf" download class="contact-btn">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5,20H19V18H5M19,9H15V3H9V9H5L12,16L19,9Z"/>
+                        </svg>
+                        DOWNLOAD CV
+                    </a>
                 </div>
             </div>
         </section>
     </div>
 
-    <script>
-        // Matrix rain effect
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         const canvas = document.getElementById('matrix');
         const ctx = canvas.getContext('2d');
         canvas.width = window.innerWidth;
@@ -1248,7 +1071,6 @@
             canvas.height = window.innerHeight;
         });
 
-        // Scroll reveal animation
         const sections = document.querySelectorAll('.section');
         const observerOptions = {
             threshold: 0.1,
@@ -1265,12 +1087,10 @@
 
         sections.forEach(section => observer.observe(section));
 
-        // Smooth scroll
         document.querySelector('.scroll-indicator').addEventListener('click', () => {
             document.querySelector('.section').scrollIntoView({ behavior: 'smooth' });
         });
 
-        // Cursor trail effect
         let lastTrailTime = 0;
         const trailDelay = 50;
 
@@ -1301,27 +1121,14 @@
             setTimeout(() => trail.remove(), 500);
         });
 
-        // Toggle project details
         function toggleProject(card) {
             const isExpanded = card.classList.contains('expanded');
             
-            // Close all other expanded cards
             document.querySelectorAll('.project-card.expanded').forEach(c => {
                 c.classList.remove('expanded');
                 c.querySelector('.expand-icon').textContent = '+';
             });
             
-            // Toggle current card
             if (!isExpanded) {
                 card.classList.add('expanded');
-                card.querySelector('.expand-icon').textContent = '−';
-                // Smooth scroll to expanded card
-                setTimeout(() => {
-                    card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                }, 100);
-            }
-        }
-    </script>
-</body>
-</html>
-
+                card.querySelector('.expand-icon').textContent = '−
