@@ -938,7 +938,35 @@
                         </div>
                     </div>
                 </div>
-
+                <div class="project-card" onclick="toggleProject(this)">
+                    <h3>
+                        <span>DataScrub — AI Data Cleaning Agent</span>
+                        <span class="expand-icon">+</span>
+                    </h3>
+                    <div class="tech-tags">
+                        <span class="tech-tag">JavaScript (ES6+)</span>
+                        <span class="tech-tag">Ollama / Local LLMs</span>
+                        <span class="tech-tag">Web APIs</span>
+                        <span class="tech-tag">Data Engineering</span>
+                    </div>
+                    <div class="project-short-desc">
+                        <ul>
+                            <li>Developed a privacy-first data cleaning agent using local LLM inference</li>
+                            <li>Implemented hybrid automation: rule-based cleaning + AI-driven insights</li>
+                            <li>Engineered client-side processing architecture (0% data leakage)</li>
+                        </ul>
+                    </div>
+                    <div class="project-full-desc">
+                        <p><strong>Challenge:</strong> Data preparation often requires uploading sensitive datasets to cloud-based tools, posing security risks. Furthermore, manual data cleaning remains a significant bottleneck in the data science lifecycle.</p>
+                        <p><strong>Solution:</strong> Architected <em>DataScrub</em>, a browser-based application that integrates rule-based algorithms with Generative AI. The tool leverages Ollama for local LLM inference (e.g., Qwen, Llama 3), ensuring data sovereignty while providing advanced reasoning capabilities for complex cleaning tasks.</p>
+                        <p><strong>Technical Implementation:</strong> Built a reactive, single-page application using vanilla JavaScript for maximum performance. Integrated PapaParse and SheetJS for robust file handling. Developed a modular AI backend that supports both local inference and external APIs (Groq, OpenAI) via a unified interface. Implemented a state-management system for undo/redo functionality.</p>
+                        <p><strong>Impact:</strong> Delivers a zero-latency, secure environment for Exploratory Data Analysis (EDA), allowing data scientists to automate whitespace trimming, missing value imputation, and outlier detection without compromising data privacy.</p>
+                        <div class="project-links">
+                            <a href="https://github.com/daththeanalyst/datascrub" class="project-link" target="_blank">VIEW ON GITHUB</a>
+                            <a href="https://daththeanalyst.github.io/datascrub" class="project-link" target="_blank">LIVE DEMO</a>
+                        </div>
+                    </div>
+                </div>
                 <div class="project-card" onclick="toggleProject(this)">
                     <h3>
                         <span>Marketing Analytics Suite</span>
@@ -1198,5 +1226,6 @@
         }
     }
 </script>
+
 
 
