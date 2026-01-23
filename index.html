@@ -454,14 +454,20 @@
             transition: all 0.5s ease-in-out;
         }
 
-/* This block tells it what to do when the 'expanded' class is added */
-.project-card.expanded .project-full-desc {
-    max-height: 1000px; /* Just a number larger than the content */
-    opacity: 1;
-    margin-top: 15px;
-    padding-top: 15px;
-    border-top: 1px solid var(--border-color);
-}
+        /* This block tells it what to do when the 'expanded' class is added */
+        .project-card.expanded .project-full-desc {
+            max-height: 1000px; /* Just a number larger than the content */
+            opacity: 1;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid var(--border-color);
+        }
+                /* --- ADD THIS NEW BLOCK --- */
+        /* This forces the open card to take up the whole row, 
+           restoring the "wide" look you prefer */
+        .project-card.expanded {
+            grid-column: 1 / -1; 
+        }
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(-10px); }
             to { opacity: 1; transform: translateY(0); }
@@ -1205,3 +1211,4 @@
         }
     }
 </script>
+
