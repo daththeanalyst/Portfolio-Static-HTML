@@ -434,33 +434,20 @@
         }
 
                 /* Remove display: none/block and use max-height instead */
+        /* 1. The Description (Hidden by default) */
         .project-full-desc {
-            /* CRITICAL: Do NOT use display: none here, or animation won't work */
-            display: block; 
-            
-            /* We hide it using height and opacity instead */
-            max-height: 0;
-            opacity: 0;
-            overflow: hidden;
-            
-            /* Standard styling */
-            margin-top: 0;
-            padding-top: 0;
-            border-top: 1px solid transparent;
-            color: var(--text-secondary);
-            line-height: 1.8;
-            
-            /* The Animation Magic */
-            transition: all 0.5s ease-in-out;
-        }
-
-        /* This block tells it what to do when the 'expanded' class is added */
-        .project-card.expanded .project-full-desc {
-            max-height: 1000px; /* Just a number larger than the content */
-            opacity: 1;
+            display: none;       /* Completely hidden initially */
             margin-top: 15px;
             padding-top: 15px;
             border-top: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        /* 2. When Expanded (Show it instantly) */
+        .project-card.expanded .project-full-desc {
+            display: block;      /* Appear instantly */
+            animation: fadeIn 0.3s ease-in; /* A quick fade-in is safer than sliding */
         }
                 /* --- ADD THIS NEW BLOCK --- */
         /* This forces the open card to take up the whole row, 
@@ -1211,4 +1198,5 @@
         }
     }
 </script>
+
 
